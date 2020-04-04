@@ -1,0 +1,167 @@
+cc_defaults {
+    name: "default_config",
+    clang: true,
+    cflags: [
+        "-fPIC",
+        "-fexceptions",
+        "-Wno-error=non-virtual-dtor",
+    ],
+}
+
+cc_library_shared {
+    name: "libboost_atomic",
+
+    defaults: [
+        "default_config",
+    ],
+
+    srcs: [
+        "libs/atomic/src/lockpool.cpp",
+    ]
+}
+
+cc_library_shared {
+    name: "libboost_filesystem",
+
+    defaults: [
+        "default_config",
+    ],
+
+    srcs: [
+        "libs/filesystem/src/codecvt_error_category.cpp",
+        "libs/filesystem/src/exception.cpp",
+        "libs/filesystem/src/operations.cpp",
+        "libs/filesystem/src/directory.cpp",
+        "libs/filesystem/src/path.cpp",
+        "libs/filesystem/src/path_traits.cpp",
+        "libs/filesystem/src/portability.cpp",
+        "libs/filesystem/src/unique_path.cpp",
+        "libs/filesystem/src/utf8_codecvt_facet.cpp",
+    ],
+    rtti: true,
+    export_include_dirs: ["."],
+    vendor: true,
+}
+
+cc_library_shared {
+    name: "libboost_log",
+    defaults: [
+        "default_config",
+    ],
+    srcs: [
+        "libs/log/src/attribute_name.cpp",
+        "libs/log/src/attribute_set.cpp",
+        "libs/log/src/attribute_value_set.cpp",
+        "libs/log/src/code_conversion.cpp",
+        "libs/log/src/core.cpp",
+        "libs/log/src/date_time_format_parser.cpp",
+        "libs/log/src/default_attribute_names.cpp",
+        "libs/log/src/default_sink.cpp",
+        "libs/log/src/dump.cpp",
+        "libs/log/src/event.cpp",
+        "libs/log/src/exceptions.cpp",
+        "libs/log/src/format_parser.cpp",
+        "libs/log/src/global_logger_storage.cpp",
+        "libs/log/src/named_scope.cpp",
+        "libs/log/src/named_scope_format_parser.cpp",
+        "libs/log/src/once_block.cpp",
+        "libs/log/src/permissions.cpp",
+        "libs/log/src/process_id.cpp",
+        "libs/log/src/process_name.cpp",
+        "libs/log/src/record_ostream.cpp",
+        "libs/log/src/severity_level.cpp",
+        "libs/log/src/spirit_encoding.cpp",
+        "libs/log/src/syslog_backend.cpp",
+        "libs/log/src/text_file_backend.cpp",
+        "libs/log/src/text_multifile_backend.cpp",
+        "libs/log/src/text_ostream_backend.cpp",
+        "libs/log/src/thread_id.cpp",
+        "libs/log/src/threadsafe_queue.cpp",
+        "libs/log/src/thread_specific.cpp",
+        "libs/log/src/timer.cpp",
+        "libs/log/src/timestamp.cpp",
+        "libs/log/src/trivial.cpp",
+        "libs/log/src/setup/*.cpp",
+    ],
+
+    rtti: true,
+
+    local_include_dirs: [
+        "libs/log/src/",
+    ],
+
+    shared_libs: [
+        "libboost_filesystem",
+        "libboost_regex",
+        "libboost_thread",
+    ],
+
+    cflags: [
+        "-DBOOST_LOG_DYN_LINK",
+    ],
+    export_include_dirs: ["."],
+    vendor: true,
+}
+cc_library_shared {
+    name: "libboost_system",
+    srcs: [
+        "libs/system/src/*.cpp",
+    ],
+
+    defaults: [
+        "default_config",
+    ],
+    rtti: true,
+
+    export_include_dirs: ["."],
+    vendor: true,
+}
+cc_library_shared {
+    name: "libboost_thread",
+
+    defaults: [
+        "default_config",
+    ],
+    srcs: [
+        "libs/thread/src/*.cpp",
+        "libs/thread/src/pthread/once_atomic.cpp",
+        "libs/thread/src/pthread/thread.cpp",
+    ],
+
+    rtti: true,
+
+    export_include_dirs: ["."],
+    vendor: true,
+}
+cc_library_shared {
+    name: "libboost_regex",
+
+    defaults: [
+        "default_config",
+    ],
+    srcs: [
+        "libs/regex/src/cpp_regex_traits.cpp",
+        "libs/regex/src/cregex.cpp",
+        "libs/regex/src/c_regex_traits.cpp",
+        "libs/regex/src/fileiter.cpp",
+        "libs/regex/src/icu.cpp",
+        "libs/regex/src/instances.cpp",
+        "libs/regex/src/posix_api.cpp",
+        "libs/regex/src/regex.cpp",
+        "libs/regex/src/regex_debug.cpp",
+        "libs/regex/src/regex_raw_buffer.cpp",
+        "libs/regex/src/regex_traits_defaults.cpp",
+        "libs/regex/src/static_mutex.cpp",
+        "libs/regex/src/usinstances.cpp",
+        "libs/regex/src/w32_regex_traits.cpp",
+        "libs/regex/src/wc_regex_traits.cpp",
+        "libs/regex/src/wide_posix_api.cpp",
+        "libs/regex/src/winstances.cpp",
+    ],
+
+    rtti: true,
+
+    export_include_dirs: ["."],
+    vendor: true,
+}
+
